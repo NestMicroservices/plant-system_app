@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
 
 import { DashLayout } from './dashboard/DashLayout';
 import { IndirectCostsView } from './dashboard/indirect-costs/IndirectCostsView';
@@ -8,7 +8,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<DashLayout />}>
-          <Route path='/' element={<IndirectCostsView />} />
+          <Route index element={<Navigate to={'/indirect-costs'} />} />
+          <Route path='/indirect-costs' element={<IndirectCostsView />} />
+          <Route path='/*' element={<div>No Content</div>} />
         </Route>
       </Routes>
     </BrowserRouter>

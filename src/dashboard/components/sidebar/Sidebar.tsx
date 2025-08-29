@@ -1,15 +1,14 @@
-import MailIcon from '@mui/icons-material/Mail';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import {
   Divider,
   Drawer,
   List,
   ListItem,
   ListItemButton,
-  ListItemIcon,
   ListItemText,
   Toolbar,
 } from '@mui/material';
+import { NavLink } from 'react-router';
+import { menuOptions } from './menu-options';
 
 interface Props {
   open: boolean;
@@ -43,27 +42,24 @@ export const Sidebar = ({
       <Toolbar />
       <Divider />
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
+        {menuOptions.map(({ order, label, route, enabled }) => (
+          <ListItem key={label} disablePadding>
+            <NavLink
+              to={route}
+              style={{
+                width: '100%',
+                textDecoration: 'none',
+                color: 'inherit',
+                pointerEvents: enabled ? 'auto' : 'none',
+              }}
+              tabIndex={enabled ? 0 : -1}
+            >
+              {({ isActive }) => (
+                <ListItemButton selected={isActive} disabled={!enabled}>
+                  <ListItemText primary={`${order}. ${label}`} />
+                </ListItemButton>
+              )}
+            </NavLink>
           </ListItem>
         ))}
       </List>
