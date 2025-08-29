@@ -1,10 +1,17 @@
-import Button from '@mui/material/Button';
+import { BrowserRouter, Route, Routes } from 'react-router';
+
+import { DashLayout } from './dashboard/DashLayout';
+import { IndirectCostsView } from './dashboard/indirect-costs/IndirectCostsView';
 
 function App() {
   return (
-    <>
-      <Button variant='contained'>Hello world</Button>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<DashLayout />}>
+          <Route path='/' element={<IndirectCostsView />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
