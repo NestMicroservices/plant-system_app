@@ -50,17 +50,22 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchAppBar() {
+interface Props {
+  onMenuClick?: () => void;
+}
+
+export default function SearchAppBar({ onMenuClick }: Props) {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position='static'>
+      <AppBar position='relative'>
         <Toolbar>
           <IconButton
             size='large'
             edge='start'
             color='inherit'
             aria-label='open drawer'
-            sx={{ mr: 2 }}
+            sx={{ mr: 2, display: { xs: 'block', md: 'none' } }}
+            onClick={onMenuClick}
           >
             <MenuIcon />
           </IconButton>
