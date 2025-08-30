@@ -7,11 +7,13 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<DashLayout />}>
-          <Route index element={<Navigate to={'/indirect-costs'} />} />
-          <Route path='/indirect-costs' element={<IndirectCostsView />} />
-          <Route path='/*' element={<div>No Content</div>} />
+        <Route path='/' element={<div>Select Plant View</div>} />
+        <Route path='/:plantId' element={<DashLayout />}>
+          <Route index element={<Navigate to={'indirect-costs'} replace />} />
+          <Route path='indirect-costs' element={<IndirectCostsView />} />
         </Route>
+        <Route path='404' element={<div>Not Found</div>} />
+        <Route path='*' element={<div>Not Found</div>} />
       </Routes>
     </BrowserRouter>
   );

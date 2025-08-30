@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router';
+
 import {
   Divider,
   Drawer,
@@ -7,19 +9,23 @@ import {
   ListItemText,
   Toolbar,
 } from '@mui/material';
-import { NavLink } from 'react-router';
+
 import { menuOptions } from './menu-options';
 
 interface Props {
+  plantId: string;
   open: boolean;
   isMobile: boolean;
   drawerWidth?: number;
+  selectChildren?: JSX.Element;
   handleCloseDrawer?: () => void;
 }
 export const Sidebar = ({
-  drawerWidth = 240,
-  isMobile,
+  plantId,
   open,
+  isMobile,
+  drawerWidth = 240,
+  selectChildren,
   handleCloseDrawer,
 }: Props) => {
   return (
@@ -32,7 +38,7 @@ export const Sidebar = ({
           boxSizing: 'border-box',
         },
         position: { xs: 'fixed', md: 'relative' },
-        zIndex: { xs: 1, md: 0 },
+        zIndex: { xs: 10, md: 0 },
       }}
       variant={isMobile ? 'temporary' : 'permanent'}
       anchor='left'
@@ -40,12 +46,21 @@ export const Sidebar = ({
       onClose={handleCloseDrawer}
     >
       <Toolbar />
+
       <Divider />
+
+      {selectChildren && (
+        <>
+          {selectChildren}
+          <Divider />
+        </>
+      )}
+
       <List>
         {menuOptions.map(({ order, label, route, enabled }) => (
           <ListItem key={label} disablePadding>
             <NavLink
-              to={route}
+              to={`/${plantId}/${route}`}
               style={{
                 width: '100%',
                 textDecoration: 'none',
