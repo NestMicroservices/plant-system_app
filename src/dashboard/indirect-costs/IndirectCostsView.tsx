@@ -1,5 +1,10 @@
 import React from 'react';
+import CustomizedTable from '../components/tables/CustomizedTable';
 
 export const IndirectCostsView = () => {
-  return <div>IndirectCostsView</div>;
+  return (
+    <div>
+      <CustomizedTable />
+    </div>
+  );
 };
