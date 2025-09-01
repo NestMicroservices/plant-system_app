@@ -7,7 +7,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<div>Select Plant View</div>} />
+        <Route path='/' element={<Navigate to={'1/indirect-costs'}/>} />
         <Route path='/:plantId' element={<DashLayout />}>
           <Route index element={<Navigate to={'indirect-costs'} replace />} />
           <Route path='indirect-costs' element={<IndirectCostsView />} />
