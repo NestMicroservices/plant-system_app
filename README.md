@@ -22,18 +22,30 @@ Esta es una aplicación para la gestión de plantas, operaciones y costos indire
 ## Primeros pasos
 
 1. **Instala las dependencias:**
+```bash
+git clone https://github.com/NestMicroservices/plant-system_app.git
+cd plant-system_app
+```
+
+2. **Variables de entorno:**
+
+Copia el archivo `.env.template` como `.env`:
+
+Edita `.env` según tu entorno y credenciales.tall
+
+3. **Instala las dependencias:**
 
   ```bash
   npm install
   ```
 
-2. **Inicia el servidor de desarrollo:**
+4. **Inicia el servidor de desarrollo:**
 
   ```bash
   npm run dev
   ```
 
-3. **Abre la aplicación:**
+5. **Abre la aplicación:**
 
   Ingresa a [http://localhost:5173](http://localhost:5173) en tu navegador.
 
