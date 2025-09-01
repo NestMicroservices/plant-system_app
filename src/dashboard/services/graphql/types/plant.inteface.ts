@@ -5,6 +5,7 @@ export interface Plant {
   name: string;
   createdAt: Date;
   updatedAt: Date;
-
+  
+  volumes?: number[];
   operations: Operation[];
 }
