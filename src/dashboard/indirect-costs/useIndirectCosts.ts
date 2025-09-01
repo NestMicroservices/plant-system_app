@@ -12,7 +12,7 @@ interface Cell {
   costConfig: CostConfig;
 }
 
-type IndirectCostColumn = Record<number, Cell>;
+export type IndirectCostColumn = Record<number, Cell>;
 export type IndirectCostRow = Record<number, IndirectCostColumn>;
 
 export const useIndirectCost = () => {
@@ -27,7 +27,7 @@ export const useIndirectCost = () => {
   const buildColumns = (costConfigs: CostConfig[], row: number) =>
     costConfigs.reduce((accCostConfig: IndirectCostColumn, costConfig) => {
       accCostConfig[costConfig.volume] = {
-        costConfig: { ...costConfig },
+        costConfig: { ...costConfig, operationId: row },
         column: costConfig.volume,
         row: row,
       };
@@ -64,7 +64,7 @@ export const useIndirectCost = () => {
       setIsLoading(false);
     };
   }, [plantId]);
-  
+
   return {
     columns,
     matrix,

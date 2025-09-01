@@ -60,8 +60,8 @@ export const DashLayout = () => {
       }}
     >
       <Sidebar
-        plantId={drawerWidth}
-        drawerWidth={240}
+        plantId={plantId}
+        drawerWidth={drawerWidth}
         open={isOpenMenu}
         isMobile={isMobile}
         handleCloseDrawer={() => setIsOpenMenu(false)}
