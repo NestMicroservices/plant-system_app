@@ -36,9 +36,8 @@ export const useIndirectCost = () => {
 
   useEffect(() => {
     if (!plantId) return;
-
+    setIsLoading(true);
     PlantClient.fetchPlantById(+plantId).then((plant) => {
-      setIsLoading(true);
       if (plant) {
         setPlant(plant);
         setColumns(plant?.volumes ?? []);
@@ -60,8 +59,12 @@ export const useIndirectCost = () => {
 
       setIsLoading(false);
     });
-  }, [plantId]);
 
+    return () => {
+      setIsLoading(false);
+    };
+  }, [plantId]);
+  
   return {
     columns,
     matrix,
