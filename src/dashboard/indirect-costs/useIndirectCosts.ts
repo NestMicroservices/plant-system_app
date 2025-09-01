@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
 import type { CostConfig } from '../services/graphql/types/cost-config.interface';
+import type { Operation } from '../services/graphql/types/operation.interface';
 import type { Plant } from '../services/graphql/types/plant.inteface';
 import { PlantClient } from '../services/plant-client';
-import type { Operation } from '../services/graphql/types/operation.interface';
 
 interface Cell {
   column: number;

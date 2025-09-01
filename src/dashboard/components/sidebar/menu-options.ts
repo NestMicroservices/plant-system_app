@@ -7,7 +7,7 @@ interface MenuOption {
 
 export const menuOptions: MenuOption[] = [
   { order: 1, label: 'Precios Base', route: 'base-prices', enabled: false },
-  { order: 2, label: 'Waste', route: 'waste', enabled: true },
+  { order: 2, label: 'Waste', route: 'waste', enabled: false },
   {
     order: 3,
     label: 'Costos Indirectos',

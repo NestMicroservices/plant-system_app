@@ -31,6 +31,7 @@ export default function CustomizedTable({
   const [plantOperations, setPlantOperations] =
     useState<Operation[]>(operations);
   const [selectOperation, setSelectOperation] = useState<Operation>();
+  const [operationName, setOperationName] = useState<string>();
   const [selectCostConfig, setSelectCostConfig] = useState<CostConfig>();
 
   const handleUdateOperation = async (id: number, name: string) => {
@@ -101,6 +102,7 @@ export default function CustomizedTable({
                       key={`${o.id}-${column}`}
                       align='left'
                       onDoubleClick={() => {
+                        setOperationName(o.name);
                         setSelectCostConfig(costConfig);
                       }}
                     >
@@ -134,7 +136,9 @@ export default function CustomizedTable({
           label='Costo'
           name='cost'
           defaultValue={selectCostConfig.cost}
-          title={formatVolumeWithUnit(selectCostConfig.volume)}
+          title={`${operationName} - ${formatVolumeWithUnit(
+            selectCostConfig.volume
+          )}`}
           handleClose={() => setSelectCostConfig(undefined)}
           handleSubmit={(value) =>
             handleUdateCost(selectCostConfig, Number(value))
