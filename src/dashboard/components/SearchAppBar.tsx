@@ -56,7 +56,7 @@ interface Props {
 
 export default function SearchAppBar({ onMenuClick }: Props) {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box>
       <AppBar position='relative'>
         <Toolbar>
           <IconButton

@@ -38,7 +38,7 @@ export const Sidebar = ({
           boxSizing: 'border-box',
         },
         position: { xs: 'fixed', md: 'relative' },
-        zIndex: { xs: 10, md: 0 },
+        zIndex: 10,
       }}
       variant={isMobile ? 'temporary' : 'permanent'}
       anchor='left'

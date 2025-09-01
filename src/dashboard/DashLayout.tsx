@@ -9,6 +9,8 @@ import { Sidebar } from './components/sidebar/Sidebar';
 import type { Plant } from './services/graphql/types/plant.inteface';
 import { PlantClient } from './services/plant-client';
 
+const drawerWidth = 240;
+
 export const DashLayout = () => {
   const { plantId } = useParams();
 
@@ -16,7 +18,7 @@ export const DashLayout = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   const [isOpenMenu, setIsOpenMenu] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(true);
   const [plants, setPlants] = useState<Plant[]>([]);
   const isValidPlatId = plants.some((p) => p.id === Number(plantId));
 
@@ -34,7 +36,7 @@ export const DashLayout = () => {
 
   // if (!isValidPlatId) return <Navigate to={'/404'} />;
 
-  if (loading)
+  if (isLoading)
     return (
       <Box
         sx={{
@@ -50,9 +52,15 @@ export const DashLayout = () => {
     );
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        minHeight: '100dvh',
+        position: 'relative',
+      }}
+    >
       <Sidebar
-        plantId={plantId}
+        plantId={drawerWidth}
         drawerWidth={240}
         open={isOpenMenu}
         isMobile={isMobile}
@@ -60,9 +68,18 @@ export const DashLayout = () => {
         selectChildren={<SelectPlant plants={plants} />}
       />
 
-      <Box component='div' sx={{ flexGrow: 1, bgcolor: 'background.default' }}>
+      <Box
+        component='div'
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          flexGrow: 1,
+          bgcolor: 'background.default',
+          maxWidth: {sx:'100vw', md: `calc(100vw - ${drawerWidth}px)` },
+        }}
+      >
         <SearchAppBar onMenuClick={() => setIsOpenMenu((prev) => !prev)} />
-        <Box component='main' sx={{ p: 3 }}>
+        <Box component='main' sx={{ p: 3, flexGrow: 1 }}>
           <Outlet />
         </Box>
       </Box>
